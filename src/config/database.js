@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 
 // conexion a la base de datos
-export const sequelize = new Sequelize("tasks_users_db", "root", "root", {
+export const sequelize = new Sequelize("user_article", "root", "root", {
   host: "localhost",
   dialect: "mysql",
 });
