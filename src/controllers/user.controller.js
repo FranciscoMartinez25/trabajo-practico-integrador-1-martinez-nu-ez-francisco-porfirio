@@ -22,8 +22,8 @@ export const getAllUsers = async (req, res) => {
         //   attributes: ["title"],
         include: [
           {
-            model: TaskModel,
-            as: "tareas",
+            model: ArticleModel,
+            as: "article",
               // attributes: {
               //   exclude: ["title", "user_id"],
               // },
@@ -33,7 +33,14 @@ export const getAllUsers = async (req, res) => {
             //     as: "propietario",
             //   },
             // ],
+            
+              
+            
           },
+          {
+                model: ProfileModel,
+                as: "profile",
+            },
         ],
       });
 
@@ -52,18 +59,17 @@ export const getUserById = async (req, res) => {
         //   attributes: ["title"],
         include: [
           {
-            model: TaskModel,
-            as: "tareas",
+            model: ArticlesModel,
+            as: "article",
             // attributes: {
             //   exclude: ["title", "user_id"],
             // },
-            include: [
-              {
-                model: DirectionModel,
-                as: "propietario",
-              },
-            ],
+            
           },
+          {
+                model: ProfileModel,
+                as: "profile",
+              },
         ],
       });
   } catch (err) {

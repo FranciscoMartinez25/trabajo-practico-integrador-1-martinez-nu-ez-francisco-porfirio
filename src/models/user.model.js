@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/database.js";
+import { ProfileModel } from './profile.model.js';
+import { ArticleModel } from './article.model.js';
 
 export const UserModel = sequelize.define(
   "User",
@@ -34,5 +36,6 @@ export const UserModel = sequelize.define(
 );
 
 
-UserModel.hasOne(DirectionModel, { foreignKey: "user_id", as:"direccion" });
-DirectionModel.belongsTo(UserModel, { foreignKey: "user_id", as:"propietario" });
+UserModel.hasOne(ProfileModel, { foreignKey: "user_id", as:"profile", onDelete:"CASCADE" });
+ProfileModel.belongsTo(UserModel, { foreignKey: "user_id", as:"propietario" });
+UserModel.hasMany(ArticleModel, { foreignKey: "user_id", as:"articles", onDelete:"CASCADE" });

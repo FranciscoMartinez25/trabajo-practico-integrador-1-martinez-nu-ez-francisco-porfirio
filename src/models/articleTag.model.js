@@ -1,5 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/database.js";
+import { TagModel } from "./tag.model.js";
+import { ArticleModel } from "./article.model.js";
 
 export const ArticleTagModel = sequelize.define(
   "ArticleTag",
@@ -8,7 +10,7 @@ export const ArticleTagModel = sequelize.define(
     article_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      reference:{
+      references:{
         model:'article',
         key:'id'
       }
@@ -16,7 +18,7 @@ export const ArticleTagModel = sequelize.define(
     tag_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      reference:{
+      references:{
         model:'tag',
         key:'id'
       }
@@ -30,8 +32,7 @@ export const ArticleTagModel = sequelize.define(
     paranoid: true
   },
 );
-
-    
-  
-
-
+ArticleModel.belongsToMany(TagModel, { through: ArticleTagModel, as: "tags", 
+  foreignKey: "article_id", otherKey: "tag_id" });
+TagModel.belongsToMany(ArticleModel, { through: ArticleTagModel, as: "articles", 
+  foreignKey: "tag_id", otherKey: "article_id" });

@@ -1,6 +1,6 @@
 import express from "express";
 import { startDB } from "./src/config/database.js";
-import { userRoute } from "./src/routes/user.routes.js";
+import { userRouter } from "./src/routes/user.routes.js";
 import { tagRouter } from "./src/routes/tag.routes.js";
 import { profileRouter } from "./src/routes/profile.routes.js";
 
@@ -12,7 +12,7 @@ const PORT = 3000;
 // para que entienda el formato json
 app.use(express.json());
 
-app.use("/api", userRoute); 
+app.use("/api", userRouter); 
 
 // app.use("/", (req, res) => {
 //   return res.json({ message: "servidor todo listo" });

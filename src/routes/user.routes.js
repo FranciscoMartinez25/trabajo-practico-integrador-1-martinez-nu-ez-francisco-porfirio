@@ -6,8 +6,8 @@ import {
   getUserById,
   updateUser,
 } from "../controllers/user.controller.js";
-import { createUserValidation, updateUserValidation } from "../middlewares/validations/user.validation.js";
-import { validate } from "../middlewares/validate.js";
+import { createUserValidation } from "../middlewares/validation/user.validation.js";
+ import { validate } from "../middlewares/validate.js";
 
 export const userRouter = Router();
 
